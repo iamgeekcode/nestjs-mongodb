@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserModel } from '../models/user.model';
 
@@ -9,8 +9,8 @@ export class UsersController {
     ) { }
 
     @Get()
-    findAll() {
-        return this._service.findAll();
+    findAll(@Req() req) {
+        return this._service.findAll(req.query);
     }
 
     @Get(':id')
